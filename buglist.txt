@@ -1,0 +1,6 @@
+IntegrityError at /admin/menu/menu/add/
+insert or update on table "menu_menu" violates foreign key constraint "menu_menu_vendor_id_38af4d74_fk_accounts_vendor_id"
+DETAIL:  Key (vendor_id)=(7) is not present in table "accounts_vendor".
+
+solution:  
+change 'vendor = models.ForeignKey(User, on_delete=models.CASCADE)' to 'vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE)'
