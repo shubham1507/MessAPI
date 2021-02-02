@@ -1,3 +1,4 @@
+from django.contrib import auth
 from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.response import Response
@@ -21,6 +22,7 @@ def get_instance(request):
 class Service(viewsets.ModelViewSet):
     
     permission_classes=[IsAuthenticated]
+    authentication_classes=[SessionAuthentication]
     serializer_class = SubscriptionSerializer
     queryset = Subscription.objects.all()
 
@@ -32,7 +34,7 @@ class Service(viewsets.ModelViewSet):
 
 class CustomerSubscriptionView(APIView):
     permission_classes=[IsAuthenticated]
-    # authentication_classes=[SessionAuthentication]
+    authentication_classes=[SessionAuthentication]
     
 
     def get(self,request,sub_id):

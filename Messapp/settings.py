@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'Messapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'foodmessapp',
+        'NAME': 'messapp4',
         'USER': 'postgres',
         'PASSWORD': 'toor',
         'HOST': 'localhost',
