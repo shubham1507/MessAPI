@@ -83,10 +83,17 @@ WSGI_APPLICATION = 'Messapp.wsgi.application'
 
 DATABASES = {
     'default': {
+<<<<<<< HEAD
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'messapp4',
         'USER': 'postgres',
         'PASSWORD': 'toor',
+=======
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'messapp',
+        'USER': 'platformadmin',
+        'PASSWORD': 'snj',
+>>>>>>> 66f4f1659744e90ef01004d2df8bbf23c4732d6c
         'HOST': 'localhost',
         'PORT': '5432',
     }
