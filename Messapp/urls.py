@@ -15,7 +15,7 @@ router = routers.DefaultRouter()
 
 router.register('Service', Service, base_name='Service')
 router.register('registration', UserViewSet)
-router.register('MenuOfWeek', MenuListing)
+# router.register('MenuOfWeek', MenuListing)
 router.register('Service', Service)
 router.register('MenuOfWeek', MenuListing, base_name='MenuOfWeek')
 
