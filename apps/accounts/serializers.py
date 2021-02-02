@@ -52,7 +52,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
                         address_line_2=address_line_2,
                         phone=phone)
             user.set_password(password)
-            # user.is_active = False
+            user.is_active = False
             user.save()
             Vendor.objects.create(user=user, **profile_data)
             return user
