@@ -33,22 +33,28 @@ AUTH_USER_MODEL = 'accounts.User'
 # Application definition
 
 INSTALLED_APPS = [
+    'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
+
     'rest_framework',
     'rest_framework.authtoken',
-    'jazzmin',
+
     'apps.accounts',
     'apps.menu',
     'apps.orders',
     'apps.subcriptions',
+    'multiselectfield',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -67,6 +73,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.request',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -83,22 +90,20 @@ WSGI_APPLICATION = 'Messapp.wsgi.application'
 
 DATABASES = {
     'default': {
-<<<<<<< HEAD
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'messapp4',
-        'USER': 'postgres',
-        'PASSWORD': 'toor',
-=======
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'messapp4',
         'USER': 'platformadmin',
         'PASSWORD': 'snj',
->>>>>>> 0e4b94d536ca73ba9e73355a124354fc4f270ecd
         'HOST': 'localhost',
         'PORT': '5432',
     }
 }
+CORS_ALLOW_ALL_ORIGINS = True
 
+# Allow the origin from where you are sending the request
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+]
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -151,16 +156,19 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ]
-    
+
 }
 
+SHELL_PLUS = "ipython"
+
+
 JWT_AUTH = {
- 
+
     'JWT_VERIFY': True,
     'JWT_VERIFY_EXPIRATION': True,
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3000),
     'JWT_AUTH_HEADER_PREFIX': 'Bearer',
- 
+
 }
 
 

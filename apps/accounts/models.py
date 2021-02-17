@@ -9,6 +9,12 @@ from django.conf import settings
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 from django.utils.timezone import now
+from multiselectfield import MultiSelectField
+
+
+PAYMENT_METHOD = (('offline pay', 'COD'),
+                  ('online', 'paytym'))
+FOOD_CHOICES = (('V', 'veg'), ('N', 'non-veg'), ('M', 'mix'))
 
 
 class User(AbstractUser):
@@ -40,10 +46,11 @@ class Vendor(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 on_delete=models.CASCADE,
                                 related_name='vendor')
+    payment_mode = MultiSelectField(choices=PAYMENT_METHOD)
     mess_center_name = models.CharField(_('Mess Name'),
                                         max_length=300,
                                         blank=True)
-    FOOD_CHOICES = (('V', 'veg'), ('N', 'non-veg'), ('M', 'mix'))
+    # FOOD_CHOICES = (('V', 'veg'), ('N', 'non-veg'), ('M', 'mix'))
     deliverylt = models.CharField(_('Region of delivery'),
                                   max_length=20,
                                   blank=True,
@@ -54,11 +61,22 @@ class Vendor(models.Model):
                                   blank=True,
                                   null=True)
 
+    def __str__(self):
+        return "{}".format(self.mess_center_name)
+
 
 class Customer(models.Model):
+
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 on_delete=models.CASCADE,
                                 related_name='customer')
-    birth_date = models.DateField(_("Date"), blank=True, null=True)
-    preference = models.CharField(max_length=30, blank=True,
-                                  null=True)  #veg, non-veg, mix
+    birth_date = models.DateField(_("birth_date"), blank=True, null=True)
+    preference = models.CharField(_('Food preference'),
+                                  choices=FOOD_CHOICES,
+                                  max_length=20,
+                                  blank=True,
+                                  null=True)
+
+    def __str__(self):
+
+        return "{}".format(self.user.username)

@@ -29,7 +29,8 @@ class Service(viewsets.ModelViewSet):
 
     def perform_create(self,serializer):
         user = get_instance(self.request)
-        serializer.save(vendor=self.request.user)
+        print(user.username)
+        serializer.save(vendor=user)
 
 
 class CustomerSubscriptionView(APIView):

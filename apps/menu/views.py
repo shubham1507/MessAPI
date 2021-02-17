@@ -8,7 +8,7 @@ from .serializers import *
 from apps.accounts.permissions import *
 
 class MenuListing(viewsets.ModelViewSet):
-    permission_classes=[IsAuthenticated]
+    # permission_classes=[IsAuthenticated]
     serializer_class = MenuOfTheDaySerializer
     queryset = Menu.objects.all()
 

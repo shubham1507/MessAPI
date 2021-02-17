@@ -5,7 +5,7 @@ from .models import *
 class VendorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vendor
-        fields = ('deliverylt', 'foodserved', 'mess_center_name')
+        fields = ('deliverylt', 'foodserved','payment_mode', 'mess_center_name')
 
 
 class CustomerSerializer(serializers.ModelSerializer):
@@ -97,6 +97,8 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
                                                  vendor.foodserved)
             vendor.mess_center_name = profile_data.get('mess_center_name',
                                                        vendor.mess_center_name)
+            vendor.payment_mode = profile_data.get('payment_mode',
+                                                       vendor.payment_mode)
             address_line_1 = profile_data.get('address_line_1',
                                               vendor.address_line_1)
             address_line_2 = profile_data.get('address_line_2',
